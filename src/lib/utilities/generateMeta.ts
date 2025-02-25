@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import type { Media, Page, Post, Config } from '../payload-types'
+import type { Media, Page, Post, Config } from '@/payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
@@ -36,10 +36,10 @@ export const generateMeta = async (args: {
       description: doc?.meta?.description || '',
       images: ogImage
         ? [
-            {
-              url: ogImage,
-            },
-          ]
+          {
+            url: ogImage,
+          },
+        ]
         : undefined,
       title,
       url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',

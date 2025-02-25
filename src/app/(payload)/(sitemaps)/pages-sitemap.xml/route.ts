@@ -1,6 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { getPayload } from 'payload'
-import config from '@payload-config'
+import config from '@/payload.config'
 import { unstable_cache } from 'next/cache'
 
 const getPagesSitemap = unstable_cache(
@@ -44,13 +44,13 @@ const getPagesSitemap = unstable_cache(
 
     const sitemap = results.docs
       ? results.docs
-          .filter((page) => Boolean(page?.slug))
-          .map((page) => {
-            return {
-              loc: page?.slug === 'home' ? `${SITE_URL}/` : `${SITE_URL}/${page?.slug}`,
-              lastmod: page.updatedAt || dateFallback,
-            }
-          })
+        .filter((page) => Boolean(page?.slug))
+        .map((page) => {
+          return {
+            loc: page?.slug === 'home' ? `${SITE_URL}/` : `${SITE_URL}/${page?.slug}`,
+            lastmod: page.updatedAt || dateFallback,
+          }
+        })
       : []
 
     return [...defaultSitemap, ...sitemap]

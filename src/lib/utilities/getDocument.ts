@@ -1,6 +1,6 @@
 import type { Config } from 'src/payload-types'
 
-import configPromise from '@payload-config'
+import configPromise from '@/payload.config'
 import { getPayload } from 'payload'
 import { unstable_cache } from 'next/cache'
 

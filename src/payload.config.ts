@@ -15,13 +15,14 @@ import { Header } from '@/components/Header/config'
 import { revalidateRedirects } from '@/lib/hooks/revalidateRedirects'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
 import { getServerSideURL } from '@/lib/utilities/getURL'
 
+// import { fileURLToPath } from 'url'
+// import path from 'path'
 // const filename = fileURLToPath(import.meta.url)
 // console.log('filename', filename)
 // const dirname = path.dirname(filename)
@@ -70,9 +71,9 @@ export default buildConfig({
   globals: [Header, Footer],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
-  // typescript: {
-  //   outputFile: path.resolve(dirname, 'payload-types.ts'),
-  // },
+  typescript: {
+    outputFile: 'src/payload-types.ts',
+  },
   plugins: [
     // storage-adapter-placeholder,
     redirectsPlugin({
@@ -97,10 +98,10 @@ export default buildConfig({
         },
       },
     }),
-    nestedDocsPlugin({
-      collections: ['categories'],
-      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
-    }),
+    // nestedDocsPlugin({
+    //   collections: ['categories'],
+    //   generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
+    // }),
     seoPlugin({
       generateTitle: ({ doc }) => {
         return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'

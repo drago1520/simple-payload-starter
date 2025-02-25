@@ -1,7 +1,7 @@
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { getPayload, type PayloadRequest } from 'payload'
-import configPromise from '@payload-config'
+import configPromise from '@/payload.config'
 import { CollectionSlug } from 'payload'
 
 const payloadToken = 'payload-token'
