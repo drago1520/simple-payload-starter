@@ -2,17 +2,18 @@ import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
-import React, { cache } from 'react'
+import { getPayload } from 'payload'
+import { cache } from 'react'
 
 import type { Page as PageType } from '@/payload-types'
 
+import { homeStatic } from '@/app/(payload)/next/seed/seedData/home-static'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { generateMeta } from '@/lib/utils/generateMeta'
 import { RenderBlocks } from '@/payload/blocks/RenderBlocks'
 import { RenderHero } from '@/payload/heros/RenderHero'
-import { generateMeta } from '@/lib/utils/generateMeta'
 import PageClient from './page.client'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -54,6 +55,11 @@ export default async function Page({ params: paramsPromise }: Args) {
   page = await queryPageBySlug({
     slug,
   })
+
+  // Remove this code once your website is seeded
+  if (!page && slug === 'home') {
+    page = homeStatic as PageType
+  }
 
   if (!page) {
     return <PayloadRedirects url={url} />
