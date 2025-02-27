@@ -7,99 +7,133 @@ import { fileURLToPath } from "url"
 // Get current directory in ESM
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const rootDir = path.resolve(__dirname, "../../../")
+const envPath = path.join(rootDir, ".env")
+const envExamplePath = path.join(rootDir, ".env.example")
 
-// Function to generate random secrets
-function generateSecrets() {
-	// Generate a random hex string
-	const generateSecret = () => crypto.randomBytes(32).toString("hex")
+// Generate a random secret
+const generateSecret = () => crypto.randomBytes(32).toString("hex")
 
-	// Paths
-	const rootDir = path.resolve(__dirname, "../../../")
-	const envPath = path.join(rootDir, ".env")
-	const envExamplePath = path.join(rootDir, ".env.example")
+// Create .env from .env.example if it doesn't exist
+function createEnvFromExample() {
+	if (fs.existsSync(envPath)) return true
 
-	// Only proceed if .env doesn't exist but .env.example does
-	if (!fs.existsSync(envPath) && fs.existsSync(envExamplePath)) {
-		console.log("🔑 Creating .env file with generated secrets...")
+	if (!fs.existsSync(envExamplePath)) {
+		console.error("❌ .env.example file not found")
+		return false
+	}
 
-		// Read the example file
-		let envContent = fs.readFileSync(envExamplePath, "utf8")
+	// Copy example file to .env
+	let exampleContent = fs.readFileSync(envExamplePath, "utf8")
 
-		// Replace placeholder secrets with generated values
-		envContent = envContent.replace("PAYLOAD_SECRET=YOUR_SECRET_HERE", `PAYLOAD_SECRET=${generateSecret()}`)
-		envContent = envContent.replace("CRON_SECRET=YOUR_CRON_SECRET_HERE", `CRON_SECRET=${generateSecret()}`)
+	// Replace placeholders with generated values
+	exampleContent = exampleContent.replace(/PAYLOAD_SECRET=.*$/m, `PAYLOAD_SECRET=${generateSecret()}`)
 
-		// Write to .env file
-		fs.writeFileSync(envPath, envContent)
-		console.log("✅ Environment file created successfully")
+	fs.writeFileSync(envPath, exampleContent)
+	console.log("✅ Created .env file from .env.example")
+	return true
+}
+
+// Simple function to check if DATABASE_URI exists and is not a placeholder
+function needsDatabaseURI() {
+	if (!fs.existsSync(envPath)) return true
+
+	const envContent = fs.readFileSync(envPath, "utf8")
+	const dbLine = envContent.split(/\r?\n/).find((line) => line.trim().startsWith("DATABASE_URI=") && !line.trim().startsWith("#"))
+
+	// Need a new URI if none exists or contains placeholder text
+	if (!dbLine) return true
+	const value = dbLine.split("=")[1].trim()
+	return !value || value.includes("your-database-name")
+}
+
+// Simple function to check if PAYLOAD_SECRET exists and is not a placeholder
+function needsPayloadSecret() {
+	if (!fs.existsSync(envPath)) return true
+
+	const envContent = fs.readFileSync(envPath, "utf8")
+	const secretLine = envContent.split(/\r?\n/).find((line) => line.trim().startsWith("PAYLOAD_SECRET=") && !line.trim().startsWith("#"))
+
+	// Need a new secret if none exists or contains placeholder text
+	if (!secretLine) return true
+	const value = secretLine.split("=")[1].trim()
+	return !value || value.includes("YOUR_SECRET_HERE")
+}
+
+// Simple function to check if NEXT_PUBLIC_SERVER_URL exists
+function needsServerUrl() {
+	if (!fs.existsSync(envPath)) return true
+
+	const envContent = fs.readFileSync(envPath, "utf8")
+	const urlLine = envContent
+		.split(/\r?\n/)
+		.find((line) => line.trim().startsWith("NEXT_PUBLIC_SERVER_URL=") && !line.trim().startsWith("#"))
+
+	return !urlLine
+}
+
+// Update or add a value to .env file
+function updateEnvValue(key, value) {
+	let envContent = fs.existsSync(envPath) ? fs.readFileSync(envPath, "utf8") : ""
+	const lines = envContent.split(/\r?\n/)
+
+	const lineIndex = lines.findIndex((line) => line.trim().startsWith(`${key}=`) && !line.trim().startsWith("#"))
+
+	if (lineIndex !== -1) {
+		// Replace existing line
+		lines[lineIndex] = `${key}=${value}`
+		envContent = lines.join("\n")
 	} else {
-		if (fs.existsSync(envPath)) {
-			console.log("⚠️ .env file already exists, skipping secret generation")
-		} else {
-			console.error("❌ .env.example file not found")
-		}
-	}
-}
-
-// Function to check if DATABASE_URI already exists and is not empty
-function checkDatabaseURI() {
-	const rootDir = path.resolve(__dirname, "../../../")
-	const envPath = path.join(rootDir, ".env")
-
-	if (fs.existsSync(envPath)) {
-		const envContent = fs.readFileSync(envPath, "utf8")
-		const match = envContent.match(/DATABASE_URI="([^"]*)"/)
-
-		if (match && match[1] && match[1].trim() !== "") {
-			console.log("✅ Database URI already exists in .env, skipping prompt")
-			return true
-		}
+		// Add new line
+		envContent += `\n${key}=${value}\n`
 	}
 
-	return false
+	fs.writeFileSync(envPath, envContent)
 }
 
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-})
+async function main() {
+	console.log("🚀 Starting simple setup...")
 
-// First generate secrets
-console.log("Starting setup process...")
-generateSecrets()
-
-// Check if we need to ask for DATABASE_URI
-if (checkDatabaseURI()) {
-	console.log("🚀 Setup complete!")
-	rl.close()
-} else {
-	// Then ask for MongoDB connection string
-	rl.question("Enter your MongoDB connection string: ", (dbString) => {
-		// Update or add the database string to .env
-		const envPath = path.resolve(__dirname, "../../../.env")
-
-		// Check if .env exists
-		if (fs.existsSync(envPath)) {
-			let envContent = fs.readFileSync(envPath, "utf8")
-
-			// Check if DATABASE_URI already exists in the file
-			if (envContent.includes("DATABASE_URI=")) {
-				// Replace existing DATABASE_URI
-				envContent = envContent.replace(/DATABASE_URI=.*(\r?\n|$)/g, `DATABASE_URI="${dbString}"$1`)
-			} else {
-				// Append DATABASE_URI to the end
-				envContent += `\nDATABASE_URI="${dbString}"\n`
-			}
-
-			// Write updated content back to .env
-			fs.writeFileSync(envPath, envContent)
-		} else {
-			// Create new .env file with just the DB string if it doesn't exist
-			fs.writeFileSync(envPath, `DATABASE_URI="${dbString}"\n`)
-		}
-
-		console.log("✅ Database string saved in .env")
-		console.log("🚀 Setup complete!")
-		rl.close()
+	// Create readline interface
+	const rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout,
 	})
+
+	// Create .env from example if needed
+	createEnvFromExample()
+
+	// Check and set PAYLOAD_SECRET if needed
+	if (needsPayloadSecret()) {
+		const secret = generateSecret()
+		updateEnvValue("PAYLOAD_SECRET", secret)
+		console.log("✅ Generated new PAYLOAD_SECRET")
+	}
+
+	// Check and prompt for DATABASE_URI if needed
+	if (needsDatabaseURI()) {
+		const dbString = await new Promise((resolve) => {
+			rl.question("Enter your MongoDB connection string: ", resolve)
+		})
+
+		updateEnvValue("DATABASE_URI", dbString)
+		console.log("✅ Updated DATABASE_URI")
+	} else {
+		console.log("✅ Valid DATABASE_URI already exists")
+	}
+
+	// Check and set NEXT_PUBLIC_SERVER_URL if needed
+	if (needsServerUrl()) {
+		updateEnvValue("NEXT_PUBLIC_SERVER_URL", "http://localhost:3000")
+		console.log("✅ Added NEXT_PUBLIC_SERVER_URL")
+	}
+
+	console.log("🎉 Setup complete!")
+	rl.close()
 }
+
+// Run the script
+main().catch((error) => {
+	console.error("❌ Error:", error)
+	process.exit(1)
+})
