@@ -1,6 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { getPayload } from 'payload'
-import config from '@/payload.config'
+import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
 
 const getPagesSitemap = unstable_cache(
@@ -32,10 +32,6 @@ const getPagesSitemap = unstable_cache(
     const dateFallback = new Date().toISOString()
 
     const defaultSitemap = [
-      {
-        loc: `${SITE_URL}/search`,
-        lastmod: dateFallback,
-      },
       {
         loc: `${SITE_URL}/posts`,
         lastmod: dateFallback,

@@ -1,35 +1,38 @@
 import type { Metadata } from 'next/types'
 
-import { CollectionArchive } from '@/components/CollectionArchive'
+import { CollectionArchive } from '@/components/CollectionArchive/CollectionArchive'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
-import configPromise from '@/payload.config'
+import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import React from 'react'
 import PageClient from './page.client'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
+export const POSTS_SIZE = 12
+
+// The reason we don't use searchParams for pagination is because otherwise posts list wouldn't be statically generated
+// In case you want to use search params, it's as simple as using a searchParams prop and passing it to payload.find (and remove 'force-static' and the page/[pageNumber] folder)
 export default async function PostPage() {
   const payload = await getPayload({ config: configPromise })
 
   const posts = await payload.find({
     collection: 'posts',
     depth: 1,
-    limit: 12,
+    limit: POSTS_SIZE,
     overrideAccess: false,
     select: {
       title: true,
       slug: true,
       meta: true,
-    },
+    }
   })
 
   return (
     <div className="pt-24 pb-24">
       <PageClient />
-      <div className="container mb-16">
+      <div className="container mb-12">
         <div className="prose dark:prose-invert max-w-none">
           <h1>Posts</h1>
         </div>
@@ -39,16 +42,19 @@ export default async function PostPage() {
         <PageRange
           collection="posts"
           currentPage={posts.page}
-          limit={12}
+          limit={POSTS_SIZE}
           totalDocs={posts.totalDocs}
         />
       </div>
 
       <CollectionArchive posts={posts.docs} />
 
-      <div className="container">
+      <div className="container mt-8">
         {posts.totalPages > 1 && posts.page && (
-          <Pagination page={posts.page} totalPages={posts.totalPages} />
+          <Pagination
+            page={posts.page}
+            totalPages={posts.totalPages}
+          />
         )}
       </div>
     </div>

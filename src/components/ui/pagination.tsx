@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'
 
-import { cn } from '@/lib/utilities/ui'
+import { cn } from '@/lib/utils/ui'
 import { ButtonProps, buttonVariants } from '@/components/ui/button'
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
@@ -46,6 +46,7 @@ const PaginationLink = ({
       buttonVariants({
         variant: isActive ? 'outline' : 'ghost',
         size,
+        className: 'cursor-pointer'
       }),
       disabled && 'pointer-events-none opacity-50',
       className,

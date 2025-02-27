@@ -2,13 +2,13 @@
 
 import type { StaticImageData } from 'next/image'
 
-import { cn } from '@/lib/utilities/ui'
+import { cn } from '@/lib/utils/ui'
 import NextImage from 'next/image'
 import React from 'react'
 
 import type { Props as MediaProps } from '../types'
 
-import { getClientSideURL } from '@/lib/utilities/getURL'
+import { getClientSideURL } from '@/lib/utils/getURL'
 
 const breakpoints = {
   '3xl': 1920,
@@ -43,9 +43,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   if (!src && resource && typeof resource === 'object') {
     const {
       alt: altFromResource,
-      filename: fullFilename,
-      height: fullHeight,
       url,
+      height: fullHeight,
       width: fullWidth,
     } = resource
 
@@ -64,8 +63,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   const sizes = sizeFromProps
     ? sizeFromProps
     : Object.entries(breakpoints)
-        .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-        .join(', ')
+      .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
+      .join(', ')
 
   return (
     <picture>

@@ -1,23 +1,20 @@
 import type { Metadata } from 'next'
 
-import { cn } from '@/lib/utilities/ui'
+import { cn } from '@/lib/utils/ui'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
-import { Footer } from '@/components/Footer/Component'
-import { Header } from '@/components/Header/Component'
+import { Footer } from '@/payload/globals/Footer/Component'
+import { Header } from '@/payload/globals/Header/Component'
 import { InitTheme } from '@/components/ThemeProvider/Theme/InitTheme'
-import { mergeOpenGraph } from '@/lib/utilities/mergeOpenGraph'
-import { draftMode } from 'next/headers'
+import { mergeOpenGraph } from '@/lib/utils/mergeOpenGraph'
 
+import { getServerSideURL } from '@/lib/utils/getURL'
 import './globals.css'
-import { getServerSideURL } from '@/lib/utilities/getURL'
 import { Providers } from './providers'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { isEnabled } = await draftMode()
-
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>

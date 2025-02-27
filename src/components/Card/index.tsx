@@ -1,10 +1,10 @@
 'use client'
-import { cn } from '@/lib/utilities/ui'
-import useClickableCard from '@/lib/utilities/useClickableCard'
+import { cn } from '@/lib/utils/ui'
+import useClickableCard from '@/lib/utils/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
-import type { Post } from '@/payload-types'
+import type { Post } from '@/payload/payload-types'
 
 import { Media } from '@/components/Media'
 

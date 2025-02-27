@@ -4,7 +4,7 @@ import type { Theme } from '@/components/ThemeProvider/Theme/types'
 
 import React, { createContext, useCallback, useContext, useState } from 'react'
 
-import canUseDOM from '@/lib/utilities/canUseDOM'
+import canUseDOM from '@/lib/utils/canUseDOM'
 
 export interface ContextType {
   headerTheme?: Theme | null

@@ -1,4 +1,5 @@
 'use client'
+
 import {
   Pagination as PaginationComponent,
   PaginationContent,
@@ -8,11 +9,11 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import { cn } from '@/lib/utilities/ui'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { cn } from '@/lib/utils/ui'
+import { useRouter, usePathname } from 'next/navigation'
 import React from 'react'
 
-// improved pagination with autoadding 'page' param
+// improved pagination with auto page number in URL path
 export const Pagination: React.FC<{
   className?: string
   page: number
@@ -23,7 +24,6 @@ export const Pagination: React.FC<{
 }> = (props) => {
   const router = useRouter()
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   const { className, page, totalPages, previousHref, pageHref, nextHref } = props
   const hasNextPage = page < totalPages
@@ -32,11 +32,14 @@ export const Pagination: React.FC<{
   const hasExtraPrevPages = page - 1 > 1
   const hasExtraNextPages = page + 1 < totalPages
 
-  // Helper function to create URL with updated page parameter
   const createPageUrl = (pageNumber: number) => {
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('page', pageNumber.toString())
-    return `${pathname}?${params.toString()}`
+    const basePath = pathname.replace(/\/page\/\d+$/, '')
+
+    if (pageNumber === 1) {
+      return basePath
+    }
+
+    return `${basePath}/page/${pageNumber}`
   }
 
   return (
