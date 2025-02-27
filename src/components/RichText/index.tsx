@@ -17,10 +17,10 @@ import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
-} from '@/payload/payload-types'
+} from '@/payload-types'
 import { BannerBlock } from '@/payload/blocks/Banner/Component'
 import { CallToActionBlock } from '@/payload/blocks/CallToAction/Component'
-import { cn } from '@/lib/utils/ui'
+import { cn } from '@/lib/utils'
 
 type NodeTypes =
   | DefaultNodeTypes

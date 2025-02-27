@@ -1,9 +1,9 @@
 import { Button, type ButtonProps } from '@/components/ui/button'
-import { cn } from '@/lib/utils/ui'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import React from 'react'
 
-import type { Page, Post } from '@/payload/payload-types'
+import type { Page, Post } from '@/payload-types'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']

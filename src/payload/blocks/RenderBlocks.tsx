@@ -1,26 +1,17 @@
-import { cn } from '@/lib/utils/ui'
+import { cn } from '@/lib/utils'
 import React, { Fragment } from 'react'
 
-import type { Page } from '@/payload/payload-types'
-
-import { HighImpactHero } from '@/payload/heros/HighImpact'
-import { LowImpactHero } from '@/payload/heros/LowImpact'
-import { MediumImpactHero } from '@/payload/heros/MediumImpact'
+import type { Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/payload/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/payload/blocks/CallToAction/Component'
 import { ContentBlock } from '@/payload/blocks/Content/Component'
-import { FormBlock } from '@/payload/blocks/Form/Component'
 import { MediaBlock } from '@/payload/blocks/MediaBlock/Component'
 
 const blockComponents = {
-  highImpact: HighImpactHero,
-  lowImpact: LowImpactHero,
-  mediumImpact: MediumImpactHero,
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
-  formBlock: FormBlock,
   mediaBlock: MediaBlock,
 }
 

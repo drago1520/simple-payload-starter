@@ -6,7 +6,7 @@ import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 
-import type { Page as PageType } from '@/payload/payload-types'
+import type { Page as PageType } from '@/payload-types'
 
 import { RenderBlocks } from '@/payload/blocks/RenderBlocks'
 import { RenderHero } from '@/payload/heros/RenderHero'

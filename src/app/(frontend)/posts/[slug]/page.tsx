@@ -8,7 +8,7 @@ import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import RichText from '@/components/RichText'
 
-import type { Post } from '@/payload/payload-types'
+import type { Post } from '@/payload-types'
 
 import { PostHero } from '@/app/(frontend)/posts/[slug]/PostHero'
 import { generateMeta } from '@/lib/utils/generateMeta'

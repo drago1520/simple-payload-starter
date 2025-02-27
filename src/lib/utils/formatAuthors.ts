@@ -1,4 +1,4 @@
-import { Post } from '@/payload/payload-types'
+import { Post } from '@/payload-types'
 
 /**
  * Formats an array of populatedAuthors from Posts into a prettified string.
