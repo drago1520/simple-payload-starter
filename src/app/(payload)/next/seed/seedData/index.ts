@@ -1,7 +1,5 @@
 import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload'
 
-import { contactForm as contactFormData } from './contact-form'
-import { contact as contactPageData } from './contact-page'
 import { home } from './home'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
@@ -35,7 +33,7 @@ export const seed = async ({
   // as well as the collections and globals
   // this is because while `yarn seed` drops the database
   // the custom `/api/seed` endpoint does not
-  payload.logger.info(`— Clearing collections and globals...`)
+  payload.logger.info(`Clearing collections and globals...`)
 
   // clear the database
   await Promise.all(
@@ -63,7 +61,7 @@ export const seed = async ({
       .map((collection) => payload.db.deleteVersions({ collection, req, where: {} })),
   )
 
-  payload.logger.info(`— Seeding demo author and user...`)
+  payload.logger.info(`Seeding demo author and user...`)
 
   await payload.delete({
     collection: 'users',
@@ -75,7 +73,7 @@ export const seed = async ({
     },
   })
 
-  payload.logger.info(`— Seeding media...`)
+  payload.logger.info(`Seeding media...`)
 
   const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] = await Promise.all([
     fetchFileByURL(
@@ -224,7 +222,7 @@ export const seed = async ({
     demoAuthorID = `"${demoAuthorID}"`
   }
 
-  payload.logger.info(`— Seeding posts...`)
+  payload.logger.info(`Seeding posts...`)
 
   // Do not create posts with `Promise.all` because we want the posts to be created in order
   // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
@@ -278,36 +276,17 @@ export const seed = async ({
     },
   })
 
-  payload.logger.info(`— Seeding contact form...`)
+  payload.logger.info(`Seeding pages...`)
 
-  const contactForm = await payload.create({
-    collection: 'forms',
-    depth: 0,
-    data: contactFormData,
-  })
-
-  let contactFormID: number | string = contactForm.id
-
-  if (payload.db.defaultIDType === 'text') {
-    contactFormID = `"${contactFormID}"`
-  }
-
-  payload.logger.info(`— Seeding pages...`)
-
-  const [_, contactPage] = await Promise.all([
+  await Promise.all([
     payload.create({
       collection: 'pages',
       depth: 0,
       data: home({ heroImage: imageHomeDoc, metaImage: image2Doc }),
     }),
-    payload.create({
-      collection: 'pages',
-      depth: 0,
-      data: contactPageData({ contactForm: contactForm }),
-    }),
   ])
 
-  payload.logger.info(`— Seeding globals...`)
+  payload.logger.info(`Seeding globals...`)
 
   await Promise.all([
     payload.updateGlobal({
@@ -323,14 +302,11 @@ export const seed = async ({
           },
           {
             link: {
-              type: 'reference',
+              type: 'custom',
               label: 'Contact',
-              reference: {
-                relationTo: 'pages',
-                value: contactPage.id,
-              },
+              url: '/contact',
             },
-          },
+          }
         ],
       },
     }),
@@ -342,6 +318,7 @@ export const seed = async ({
             link: {
               type: 'custom',
               label: 'Admin',
+              newTab: true,
               url: '/admin',
             },
           },
@@ -350,7 +327,7 @@ export const seed = async ({
               type: 'custom',
               label: 'Source Code',
               newTab: true,
-              url: 'https://github.com/payloadcms/payload/tree/main/templates/website',
+              url: 'https://github.com/gioruu/simple-payload-starter',
             },
           },
           {

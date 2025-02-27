@@ -11,7 +11,8 @@
 		"generate:types": "payload generate:types",
 		"generate:importmap": "payload generate:importmap",
 		"lint": "next lint",
-		"payload": "payload"
+		"payload": "payload",
+		"postinstall": "node src/lib/scripts/setup.js"
 	},
 	"dependencies": {
 		"@payloadcms/db-mongodb": "latest",

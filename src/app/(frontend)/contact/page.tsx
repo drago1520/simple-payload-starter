@@ -33,7 +33,7 @@ function ContactForm({ onSubmit }: { onSubmit: (formData: FormData) => Promise<v
                   name="name"
                   type="text"
                   required
-                  className="w-full px-4 py-2 border rounded-md bg-background border-input"
+                  className="w-full px-4 py-2 border rounded-md bg-background border-primary/20"
                />
             </div>
 
@@ -46,7 +46,7 @@ function ContactForm({ onSubmit }: { onSubmit: (formData: FormData) => Promise<v
                   name="email"
                   type="email"
                   required
-                  className="w-full px-4 py-2 border rounded-md bg-background border-input"
+                  className="w-full px-4 py-2 border rounded-md bg-background border-primary/20"
                />
             </div>
 
@@ -59,7 +59,7 @@ function ContactForm({ onSubmit }: { onSubmit: (formData: FormData) => Promise<v
                   name="subject"
                   type="text"
                   required
-                  className="w-full px-4 py-2 border rounded-md bg-background border-input"
+                  className="w-full px-4 py-2 border rounded-md bg-background border-primary/20"
                />
             </div>
 
@@ -72,7 +72,7 @@ function ContactForm({ onSubmit }: { onSubmit: (formData: FormData) => Promise<v
                   name="message"
                   rows={5}
                   required
-                  className="w-full px-4 py-2 border rounded-md bg-background border-input"
+                  className="w-full px-4 py-2 border rounded-md bg-background border-primary/20"
                />
             </div>
          </div>
@@ -104,7 +104,7 @@ function NewsletterForm({ onSubmit }: { onSubmit: (formData: FormData) => Promis
                   type="email"
                   required
                   placeholder="Your email address"
-                  className="w-full px-4 py-2 border rounded-md bg-background border-input"
+                  className="w-full px-4 py-2 border rounded-md bg-background border-primary/20"
                />
             </div>
             <button
