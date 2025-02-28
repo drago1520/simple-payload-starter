@@ -7,7 +7,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { link } from '@/payload/fields/link'
+import { link } from '@/payload/fields/Link/link'
 
 const columnFields: Field[] = [
   {

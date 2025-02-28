@@ -6,8 +6,15 @@ import { ArchiveBlock } from '@/payload/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/payload/blocks/CallToAction/Component'
 import { ContentBlock } from '@/payload/blocks/Content/Component'
 import { MediaBlock } from '@/payload/blocks/MediaBlock/Component'
+import { HighImpactHero } from './HighImpact/Component'
+import { MediumImpactHero } from './MediumImpact/Component'
+import { Block } from 'payload'
+import { LowImpactHero } from './LowImpact/Component'
 
-const blockComponents = {
+const blockComponents: Record<Block['slug'], React.ComponentType<any>> = {
+  HighImpactHero,
+  MediumImpactHero,
+  LowImpactHero,
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
@@ -15,7 +22,7 @@ const blockComponents = {
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['blocks'] | undefined
 }> = (props) => {
   const { blocks } = props
 
@@ -32,10 +39,9 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
-                </div>
+                <Fragment key={index}>
+                  <Block {...block} />
+                </Fragment>
               )
             }
           }

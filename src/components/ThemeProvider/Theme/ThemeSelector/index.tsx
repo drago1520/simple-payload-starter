@@ -9,16 +9,22 @@ import {
 } from '@/components/ui/select'
 import React, { useState } from 'react'
 
-import type { Theme } from './types'
+import { Bold, Italic, Monitor, Moon, Sun, Underline } from "lucide-react"
+
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/components/ui/toggle-group"
 
 import { useTheme } from '..'
 import { themeLocalStorageKey } from './types'
+import { Theme } from '../types'
 
 export const ThemeSelector: React.FC = () => {
   const { setTheme } = useTheme()
   const [value, setValue] = useState('')
 
-  const onThemeChange = (themeToSet: Theme & 'auto') => {
+  const onThemeChange = (themeToSet: Theme) => {
     if (themeToSet === 'auto') {
       setTheme(null)
       setValue('auto')
@@ -34,18 +40,16 @@ export const ThemeSelector: React.FC = () => {
   }, [])
 
   return (
-    <Select onValueChange={onThemeChange} value={value}>
-      <SelectTrigger
-        aria-label="Select a theme"
-        className="w-auto bg-transparent gap-2 pl-0 md:pl-3 border-none"
-      >
-        <SelectValue placeholder="Theme" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="auto">Auto</SelectItem>
-        <SelectItem value="light">Light</SelectItem>
-        <SelectItem value="dark">Dark</SelectItem>
-      </SelectContent>
-    </Select>
+    <ToggleGroup type="single" size="sm" value={value} onValueChange={(value: Theme) => onThemeChange(value)}>
+      <ToggleGroupItem value="auto" aria-label="Toggle auto" className='rounded-lg'>
+        <Monitor className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="light" aria-label="Toggle light" className='rounded-lg'>
+        <Sun className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="dark" aria-label="Toggle dark" className='rounded-lg'>
+        <Moon className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
   )
 }

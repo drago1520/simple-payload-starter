@@ -1,6 +1,5 @@
 
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Plugin } from 'payload'
@@ -35,14 +34,9 @@ export const plugins: Plugin[] = [
       },
    }),
 
-   nestedDocsPlugin({
-      collections: ['categories'],
-      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
-   }),
-
    seoPlugin({
       generateTitle: ({ doc }: { doc: Post | Page }) => {
-         return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+         return doc?.title ? `${doc.title} | payloadblocks.dev Website Template` : 'payloadblocks.dev Website Template'
       },
       generateURL: ({ doc }: { doc: Post | Page }) => {
          const url = getServerSideURL()

@@ -12,7 +12,6 @@ import { homeStatic } from '@/app/(payload)/next/seed/seedData/home-static'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { generateMeta } from '@/lib/utils/generateMeta'
 import { RenderBlocks } from '@/payload/blocks/RenderBlocks'
-import { RenderHero } from '@/payload/heros/RenderHero'
 import PageClient from './page.client'
 
 export async function generateStaticParams() {
@@ -65,7 +64,7 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
+  const { blocks } = page
 
   return (
     <article className="pt-16 pb-24">
@@ -75,8 +74,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={blocks} />
     </article>
   )
 }

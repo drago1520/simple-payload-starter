@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type { Header as HeaderType } from '@/payload-types'
-import { CMSLink } from '@/components/Link'
+import { CMSLink } from '@/payload/fields/Link/index'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []

@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 
-import { link } from '@/payload/fields/link'
+import { link } from '@/payload/fields/Link/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
 
 export const Header: GlobalConfig = {

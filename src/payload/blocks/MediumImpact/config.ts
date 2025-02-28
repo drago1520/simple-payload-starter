@@ -1,4 +1,4 @@
-import type { Block } from 'payload'
+import type { Block, Field } from 'payload'
 
 import {
   FixedToolbarFeature,
@@ -9,9 +9,9 @@ import {
 
 import { linkGroup } from '@/payload/fields/Link/linkGroup'
 
-export const CallToAction: Block = {
-  slug: 'cta',
-  interfaceName: 'CallToActionBlock',
+export const MediumImpactHero: Block = {
+  slug: 'MediumImpactHero',
+  interfaceName: 'MediumImpactHeroBlock',
   fields: [
     {
       name: 'richText',
@@ -29,14 +29,15 @@ export const CallToAction: Block = {
       label: false,
     },
     linkGroup({
-      appearances: ['default', 'outline'],
       overrides: {
         maxRows: 2,
       },
     }),
+    {
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
   ],
-  labels: {
-    plural: 'Calls to Action',
-    singular: 'Call to Action',
-  },
 }
