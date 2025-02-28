@@ -14,6 +14,18 @@ This template has been modified to:
 
 > Note: You might need to use npm instead of pnpm to make Turbopack work.
 
+## Homepage
+
+![Image](https://l9jwh7kb3f.ufs.sh/f/adwYXUqIHfEzLMuOOBrEn0ZqUPYAVEX3rW1d2tLaOwg87vT4)
+
+## Posts page (SEO-friendly pagination included)
+
+![Image](https://l9jwh7kb3f.ufs.sh/f/adwYXUqIHfEzygftMlCnXBoSZf97eNbHm2IrzvwT5MlUDjV8)
+
+## Contact page (no form builders)
+
+![Image](https://l9jwh7kb3f.ufs.sh/f/adwYXUqIHfEzeQX11NLZaoQHTKqJfRpmAzbLGXxdngr2sB78)
+
 ## Key Features
 
 - **Posts system**: Complete blog functionality
