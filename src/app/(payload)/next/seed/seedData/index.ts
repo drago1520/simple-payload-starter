@@ -96,9 +96,9 @@ export const seed = async ({
     image2Doc,
     image3Doc,
     imageHomeDoc,
-    technologyCategory,
-    newsCategory,
-    financeCategory,
+    _technologyCategory,
+    _newsCategory,
+    _financeCategory,
   ] = await Promise.all([
     payload.create({
       collection: 'users',
@@ -207,19 +207,19 @@ export const seed = async ({
     }),
   ])
 
-  let demoAuthorID: number | string = demoAuthor.id
+  let _demoAuthorID: number | string = demoAuthor.id
 
-  let image1ID: number | string = image1Doc.id
-  let image2ID: number | string = image2Doc.id
-  let image3ID: number | string = image3Doc.id
-  let imageHomeID: number | string = imageHomeDoc.id
+  let _image1ID: number | string = image1Doc.id
+  let _image2ID: number | string = image2Doc.id
+  let _image3ID: number | string = image3Doc.id
+  let _imageHomeID: number | string = imageHomeDoc.id
 
   if (payload.db.defaultIDType === 'text') {
-    image1ID = `"${image1Doc.id}"`
-    image2ID = `"${image2Doc.id}"`
-    image3ID = `"${image3Doc.id}"`
-    imageHomeID = `"${imageHomeDoc.id}"`
-    demoAuthorID = `"${demoAuthorID}"`
+    _image1ID = `"${image1Doc.id}"`
+    _image2ID = `"${image2Doc.id}"`
+    _image3ID = `"${image3Doc.id}"`
+    _imageHomeID = `"${imageHomeDoc.id}"`
+    _demoAuthorID = `"${_demoAuthorID}"`
   }
 
   payload.logger.info(`Seeding posts...`)

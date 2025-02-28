@@ -123,7 +123,7 @@ function NewsletterForm({ onSubmit }: { onSubmit: (formData: FormData) => Promis
                   className="mt-0.5"
                />
                <span>
-                  I agree to receive marketing emails and can unsubscribe at any time.
+                  {`I agree to receive marketing emails and can unsubscribe at any time.`}
                </span>
             </label>
          </div>
@@ -145,7 +145,7 @@ export default async function ContactPage() {
                </div>
 
                <p className="mb-8 text-muted-foreground">
-                  We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+                  {`We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.`}
                </p>
 
                <ContactForm onSubmit={handleContactSubmit} />
@@ -153,7 +153,7 @@ export default async function ContactPage() {
                <div className="mt-16 pt-8 border-t">
                   <h2 className="text-2xl mb-8">Stay Updated</h2>
                   <p className="mb-6 text-muted-foreground">
-                     Subscribe to our newsletter to receive updates and news.
+                     {`Subscribe to our newsletter to receive updates and news.`}
                   </p>
                   <NewsletterForm onSubmit={handleNewsletterSubmit} />
                </div>

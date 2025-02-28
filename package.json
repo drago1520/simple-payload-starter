@@ -12,7 +12,7 @@
 		"generate:importmap": "payload generate:importmap",
 		"lint": "next lint",
 		"payload": "payload",
-		"postinstall": "node src/lib/scripts/setup.js"
+		"postinstall": "node -e \"process.env.VERCEL_ENV || process.env.CI ? console.log('Skipping setup in CI environment') : require('child_process').execSync('node src/lib/scripts/setup.js', {stdio: 'inherit'})\""
 	},
 	"dependencies": {
 		"@payloadcms/db-mongodb": "^3.24.0",

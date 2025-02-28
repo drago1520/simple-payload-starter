@@ -9,8 +9,10 @@ This template has been modified to:
 - **Simplify the structure**: Cleaner folder organization that clearly separates Payload-specific code from the rest of the application
 - **Remove unnecessary bloat**: Eliminated forms and other complex features that aren't needed for many projects
 - **Improve organization**: Better folder structure to make development more intuitive
-- **Support Turbopack**: Works with Turbopack when using npm instead of pnpm
+- **Support Turbopack**: Works with Turbopack
 - **Maintain core functionality**: Still includes posts, dynamic pages with blocks, live preview, and useful utilities
+
+> Note: You might need to use npm instead of pnpm to make Turbopack work.
 
 ## Key Features
 
@@ -26,8 +28,6 @@ This template is perfect for:
 - Building a PayloadCMS blocks & components library
 - Developers who want the power of Payload without the complexity
 - Those looking for a more maintainable alternative to WordPress
-
-> Note: This template works with Turbopack if you use npm instead of pnpm.
 
 This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
 
