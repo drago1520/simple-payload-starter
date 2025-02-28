@@ -8,7 +8,6 @@ This template has been modified to:
 
 - **Simplify the structure**: Cleaner folder organization that clearly separates Payload-specific code from the rest of the application
 - **Remove unnecessary bloat**: Eliminated forms and other complex features that aren't needed for many projects
-- **Improve organization**: Better folder structure to make development more intuitive
 - **Support Turbopack**: Works with Turbopack
 - **Maintain core functionality**: Still includes posts, dynamic pages with blocks, live preview, and useful utilities
 
@@ -22,24 +21,11 @@ This template has been modified to:
 
 ![Image](https://l9jwh7kb3f.ufs.sh/f/adwYXUqIHfEzygftMlCnXBoSZf97eNbHm2IrzvwT5MlUDjV8)
 
-## Contact page (no form builders)
+## Contact page (No form builders)
 
 ![Image](https://l9jwh7kb3f.ufs.sh/f/adwYXUqIHfEzeQX11NLZaoQHTKqJfRpmAzbLGXxdngr2sB78)
 
-## Key Features
-
-- **Posts system**: Complete blog functionality
-- **Dynamic pages**: Build pages with a flexible block-based system
-- **Preview modes**: Both live preview and draft preview
-- **Clear organization**: Payload-specific code is separated from the rest of the application
-- **Documented utilities**: Helpful utilities with added explanations
-
-This template is perfect for:
-
-- Client websites that need a clean starting point
-- Building a PayloadCMS blocks & components library
-- Developers who want the power of Payload without the complexity
-- Those looking for a more maintainable alternative to WordPress
+## Start of the original README.md
 
 This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
 
