@@ -1,0 +1,8 @@
+{
+  "printWidth": 9999,          
+  "arrowParens": "avoid",  
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "singleQuote": true,
+  "bracketSameLine": false,
+  "jsxSingleQuote": false
+}

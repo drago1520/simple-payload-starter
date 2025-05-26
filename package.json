@@ -8,11 +8,13 @@
 		"build": "next build",
 		"dev": "next dev --turbo",
 		"start": "next start",
+		"format": "npx prettier src/ --write",
 		"generate:types": "payload generate:types",
 		"generate:importmap": "payload generate:importmap",
 		"lint": "next lint",
 		"payload": "payload",
-		"setup": "node -e \"process.env.VERCEL_ENV || process.env.CI ? console.log('Skipping setup in CI environment') : require('child_process').execSync('node src/lib/scripts/setup.js', {stdio: 'inherit'})\""
+		"setup": "node -e \"process.env.VERCEL_ENV || process.env.CI ? console.log('Skipping setup in CI environment') : require('child_process').execSync('node src/lib/scripts/setup.js', {stdio: 'inherit'})\"",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@payloadcms/db-mongodb": "^3.24.0",
@@ -56,8 +58,10 @@
 		"copyfiles": "^2.4.1",
 		"eslint": "^9.16.0",
 		"eslint-config-next": "15.1.5",
+		"husky": "^9.1.7",
 		"postcss": "^8.4.38",
 		"prettier": "^3.4.2",
+		"prettier-plugin-tailwindcss": "^0.6.11",
 		"tailwindcss": "^3.4.3",
 		"typescript": "5.7.3"
 	},
