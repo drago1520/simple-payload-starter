@@ -49,12 +49,12 @@
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.2.0",
-		"@tailwindcss/typography": "^0.5.13",
+		"@tailwindcss/postcss": "^4.1.7",
+		"@tailwindcss/typography": "^0.5.16",
 		"@types/escape-html": "^1.0.2",
 		"@types/node": "22.5.4",
 		"@types/react": "19.0.7",
 		"@types/react-dom": "19.0.3",
-		"autoprefixer": "^10.4.19",
 		"copyfiles": "^2.4.1",
 		"eslint": "^9.16.0",
 		"eslint-config-next": "15.1.5",
@@ -62,7 +62,7 @@
 		"postcss": "^8.4.38",
 		"prettier": "^3.4.2",
 		"prettier-plugin-tailwindcss": "^0.6.11",
-		"tailwindcss": "^3.4.3",
+		"tailwindcss": "^4.1.7",
 		"typescript": "5.7.3"
 	},
 	"engines": {

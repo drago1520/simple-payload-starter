@@ -30,7 +30,7 @@ export const Card: React.FC<{
   const href = `/${relationTo}/${slug}`;
 
   return (
-    <article className={cn('overflow-hidden rounded-lg border border-border bg-card hover:cursor-pointer', className)} ref={card.ref}>
+    <article className={cn('border-border bg-card overflow-hidden rounded-lg border hover:cursor-pointer', className)} ref={card.ref}>
       <div className="relative w-full">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}

@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -7,8 +7,6 @@ export default {
     './src/**/*.{ts,tsx}',
   ],
   darkMode: ['selector', '[data-theme="dark"]'],
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
-  prefix: '',
   safelist: [
     'lg:col-span-4',
     'lg:col-span-6',
@@ -146,3 +144,5 @@ export default {
     },
   },
 }
+
+export default config

@@ -30,10 +30,10 @@ export default async function PostPage() {
   });
 
   return (
-    <div className="pb-24 pt-24">
+    <div className="pt-24 pb-24">
       <PageClient />
       <div className="container mb-12">
-        <div className="prose max-w-none dark:prose-invert">
+        <div className="prose dark:prose-invert max-w-none">
           <h1>Posts</h1>
         </div>
       </div>
