@@ -1,17 +1,17 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { Header as HeaderType } from '@/payload-types'
-import { CMSLink } from '@/payload/fields/Link/index'
+import React from 'react';
+import type { Header as HeaderType } from '@/payload-types';
+import { CMSLink } from '@/payload/fields/Link/index';
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
-  const navItems = data?.navItems || []
+  const navItems = data?.navItems || [];
 
   return (
-    <nav className="flex gap-3 items-center">
+    <nav className="flex items-center gap-3">
       {navItems.map(({ link }, i) => {
-        return <CMSLink key={i} {...link} appearance="link" />
+        return <CMSLink key={i} {...link} appearance="link" />;
       })}
     </nav>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-import { Page } from '@/payload-types'
+import { Page } from '@/payload-types';
 
 // Used for pre-seeded content so that the homepage is not empty
 export const homeStatic: Page = {
@@ -7,84 +7,86 @@ export const homeStatic: Page = {
   _status: 'published',
   createdAt: '2023-01-01T00:00:00.000Z',
   updatedAt: '2023-01-01T00:00:00.000Z',
-  blocks: [{
-    blockType: 'LowImpactHero',
-    richText: {
-      root: {
-        type: 'root',
-        children: [
-          {
-            type: 'heading',
-            children: [
-              {
-                type: 'text',
-                detail: 0,
-                format: 0,
-                mode: 'normal',
-                style: '',
-                text: 'Payload Website Template',
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            format: '',
-            indent: 0,
-            tag: 'h1',
-            version: 1,
-          },
-          {
-            type: 'paragraph',
-            children: [
-              {
-                type: 'link',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'Visit the admin dashboard',
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                fields: {
-                  linkType: 'custom',
-                  newTab: false,
-                  url: '/admin',
+  blocks: [
+    {
+      blockType: 'LowImpactHero',
+      richText: {
+        root: {
+          type: 'root',
+          children: [
+            {
+              type: 'heading',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'Payload Website Template',
+                  version: 1,
                 },
-                format: '',
-                indent: 0,
-                version: 2,
-              },
-              {
-                type: 'text',
-                detail: 0,
-                format: 0,
-                mode: 'normal',
-                style: '',
-                text: ' to make your account and seed content for your website.',
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            format: '',
-            indent: 0,
-            textFormat: 0,
-            version: 1,
-          },
-        ],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              tag: 'h1',
+              version: 1,
+            },
+            {
+              type: 'paragraph',
+              children: [
+                {
+                  type: 'link',
+                  children: [
+                    {
+                      type: 'text',
+                      detail: 0,
+                      format: 0,
+                      mode: 'normal',
+                      style: '',
+                      text: 'Visit the admin dashboard',
+                      version: 1,
+                    },
+                  ],
+                  direction: 'ltr',
+                  fields: {
+                    linkType: 'custom',
+                    newTab: false,
+                    url: '/admin',
+                  },
+                  format: '',
+                  indent: 0,
+                  version: 2,
+                },
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: ' to make your account and seed content for your website.',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              textFormat: 0,
+              version: 1,
+            },
+          ],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          version: 1,
+        },
       },
     },
-  }],
+  ],
   meta: {
     description: 'An open-source website built with Payload and Next.js.',
     title: 'Payload Website Template',
   },
   title: 'Home',
-}
+};

@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const BeforeLogin: React.FC = () => {
   return (
-    <div style={{
-      marginBottom: '1rem'
-    }}>
+    <div
+      style={{
+        marginBottom: '1rem',
+      }}
+    >
       <p>
         <b>Welcome to your dashboard!</b>
         {' This is where site admins will log in to manage your website.'}
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default BeforeLogin
+export default BeforeLogin;

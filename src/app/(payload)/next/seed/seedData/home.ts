@@ -1,15 +1,12 @@
-import type { RequiredDataFromCollectionSlug } from 'payload'
-import type { Media } from '@/payload-types'
+import type { RequiredDataFromCollectionSlug } from 'payload';
+import type { Media } from '@/payload-types';
 
 type HomeArgs = {
-  heroImage: Media
-  metaImage: Media
-}
+  heroImage: Media;
+  metaImage: Media;
+};
 
-export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
-  heroImage,
-  metaImage,
-}) => {
+export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> = ({ heroImage, metaImage }) => {
   return {
     slug: 'home',
     _status: 'published',
@@ -798,5 +795,5 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
       title: 'Payload Website Template',
     },
     title: 'Home',
-  }
-}
+  };
+};

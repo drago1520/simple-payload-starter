@@ -1,12 +1,5 @@
-import { Config } from 'payload'
-import {
-  BoldFeature,
-  ItalicFeature,
-  LinkFeature,
-  ParagraphFeature,
-  lexicalEditor,
-  UnderlineFeature,
-} from '@payloadcms/richtext-lexical'
+import { Config } from 'payload';
+import { BoldFeature, ItalicFeature, LinkFeature, ParagraphFeature, lexicalEditor, UnderlineFeature } from '@payloadcms/richtext-lexical';
 
 export const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
@@ -18,10 +11,10 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
       LinkFeature({
         enabledCollections: ['pages', 'posts'],
         fields: ({ defaultFields }) => {
-          const defaultFieldsWithoutUrl = defaultFields.filter((field) => {
-            if ('name' in field && field.name === 'url') return false
-            return true
-          })
+          const defaultFieldsWithoutUrl = defaultFields.filter(field => {
+            if ('name' in field && field.name === 'url') return false;
+            return true;
+          });
 
           return [
             ...defaultFieldsWithoutUrl,
@@ -34,9 +27,9 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
               label: ({ t }) => t('fields:enterURL'),
               required: true,
             },
-          ]
+          ];
         },
       }),
-    ]
+    ];
   },
-})
+});

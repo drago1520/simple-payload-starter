@@ -1,31 +1,18 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
 
-import {
-  BlocksFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import { BlocksFeature, FixedToolbarFeature, HeadingFeature, HorizontalRuleFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
-import { authenticated } from '@/payload/auth/authenticated'
-import { authenticatedOrPublished } from '@/payload/auth/authenticatedOrPublished'
-import { Banner } from '@/payload/blocks/Banner/config'
-import { Code } from '@/payload/blocks/Code/config'
-import { MediaBlock } from '@/payload/blocks/MediaBlock/config'
-import { generatePreviewPath } from '@/lib/utils/generatePreviewPath'
-import { populateAuthors } from './hooks/populateAuthors'
-import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
+import { authenticated } from '@/payload/auth/authenticated';
+import { authenticatedOrPublished } from '@/payload/auth/authenticatedOrPublished';
+import { Banner } from '@/payload/blocks/Banner/config';
+import { Code } from '@/payload/blocks/Code/config';
+import { MediaBlock } from '@/payload/blocks/MediaBlock/config';
+import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
+import { populateAuthors } from './hooks/populateAuthors';
+import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
-import {
-  MetaDescriptionField,
-  MetaImageField,
-  MetaTitleField,
-  OverviewField,
-  PreviewField,
-} from '@payloadcms/plugin-seo/fields'
-import { slugField } from '@/payload/fields/slug'
+import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
+import { slugField } from '@/payload/fields/slug';
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
@@ -55,9 +42,9 @@ export const Posts: CollectionConfig<'posts'> = {
           slug: typeof data?.slug === 'string' ? data.slug : '',
           collection: 'posts',
           req,
-        })
+        });
 
-        return path
+        return path;
       },
     },
     preview: (data, { req }) =>
@@ -89,14 +76,7 @@ export const Posts: CollectionConfig<'posts'> = {
               type: 'richText',
               editor: lexicalEditor({
                 features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
+                  return [...rootFeatures, HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }), BlocksFeature({ blocks: [Banner, Code, MediaBlock] }), FixedToolbarFeature(), InlineToolbarFeature(), HorizontalRuleFeature()];
                 },
               }),
               label: false,
@@ -118,7 +98,7 @@ export const Posts: CollectionConfig<'posts'> = {
                   id: {
                     not_in: [id],
                   },
-                }
+                };
               },
               hasMany: true,
               relationTo: 'posts',
@@ -177,9 +157,9 @@ export const Posts: CollectionConfig<'posts'> = {
         beforeChange: [
           ({ siblingData, value }) => {
             if (siblingData._status === 'published' && !value) {
-              return new Date()
+              return new Date();
             }
-            return value
+            return value;
           },
         ],
       },
@@ -233,4 +213,4 @@ export const Posts: CollectionConfig<'posts'> = {
     },
     maxPerDoc: 50,
   },
-}
+};

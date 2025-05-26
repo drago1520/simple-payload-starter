@@ -1,18 +1,18 @@
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
 
-import { cn } from '@/lib/utils'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
-import React from 'react'
+import { cn } from '@/lib/utils';
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
+import React from 'react';
 
-import { Footer } from '@/payload/globals/Footer/Component'
-import { Header } from '@/payload/globals/Header/Component'
-import { InitTheme } from '@/components/ThemeProvider/Theme/InitTheme'
-import { mergeOpenGraph } from '@/lib/utils/mergeOpenGraph'
+import { Footer } from '@/payload/globals/Footer/Component';
+import { Header } from '@/payload/globals/Header/Component';
+import { InitTheme } from '@/components/ThemeProvider/Theme/InitTheme';
+import { mergeOpenGraph } from '@/lib/utils/mergeOpenGraph';
 
-import { getServerSideURL } from '@/lib/utils/getURL'
-import './globals.css'
-import { Providers } from './providers'
+import { getServerSideURL } from '@/lib/utils/getURL';
+import './globals.css';
+import { Providers } from './providers';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </Providers>
       </body>
     </html>
-  )
+  );
 }
 
 export const metadata: Metadata = {
@@ -40,4 +40,4 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@payloadcms',
   },
-}
+};

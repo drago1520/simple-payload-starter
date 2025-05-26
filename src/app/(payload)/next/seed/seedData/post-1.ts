@@ -1,17 +1,13 @@
-import type { Media, User } from '@/payload-types'
-import { RequiredDataFromCollectionSlug } from 'payload'
+import type { Media, User } from '@/payload-types';
+import { RequiredDataFromCollectionSlug } from 'payload';
 
 export type PostArgs = {
-  heroImage: Media
-  blockImage: Media
-  author: User
-}
+  heroImage: Media;
+  blockImage: Media;
+  author: User;
+};
 
-export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'posts'> = ({
-  heroImage,
-  blockImage,
-  author,
-}) => {
+export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'posts'> = ({ heroImage, blockImage, author }) => {
   return {
     slug: 'digital-horizons',
     _status: 'published',
@@ -304,12 +300,11 @@ export const post1: (args: PostArgs) => RequiredDataFromCollectionSlug<'posts'> 
     },
     heroImage: heroImage.id,
     meta: {
-      description:
-        'Dive into the marvels of modern innovation, where the only constant is change. A journey where pixels and data converge to craft the future.',
+      description: 'Dive into the marvels of modern innovation, where the only constant is change. A journey where pixels and data converge to craft the future.',
       image: heroImage.id,
       title: 'Digital Horizons: A Glimpse into Tomorrow',
     },
     relatedPosts: [], // this is populated by the seed script
     title: 'Digital Horizons: A Glimpse into Tomorrow',
-  }
-}
+  };
+};

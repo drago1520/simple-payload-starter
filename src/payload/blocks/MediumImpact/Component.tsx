@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { CMSLink } from '@/payload/fields/Link/index'
-import { Media } from '@/components/Media'
-import RichText from '@/components/RichText'
-import { MediumImpactHeroBlock } from '@/payload-types'
+import { CMSLink } from '@/payload/fields/Link/index';
+import { Media } from '@/components/Media';
+import RichText from '@/components/RichText';
+import { MediumImpactHeroBlock } from '@/payload-types';
 
 export const MediumImpactHero = ({ links, media, richText }: MediumImpactHeroBlock) => {
   return (
@@ -18,20 +18,15 @@ export const MediumImpactHero = ({ links, media, richText }: MediumImpactHeroBlo
                 <li key={i}>
                   <CMSLink {...link} />
                 </li>
-              )
+              );
             })}
           </ul>
         )}
       </div>
-      <div className="container ">
+      <div className="container">
         {media && typeof media === 'object' && (
           <div>
-            <Media
-              className="-mx-4 md:-mx-8 2xl:-mx-16"
-              imgClassName=""
-              priority
-              resource={media}
-            />
+            <Media className="-mx-4 md:-mx-8 2xl:-mx-16" imgClassName="" priority resource={media} />
             {media?.caption && (
               <div className="mt-3">
                 <RichText data={media.caption} enableGutter={false} />
@@ -41,5 +36,5 @@ export const MediumImpactHero = ({ links, media, richText }: MediumImpactHeroBlo
         )}
       </div>
     </div>
-  )
-}
+  );
+};

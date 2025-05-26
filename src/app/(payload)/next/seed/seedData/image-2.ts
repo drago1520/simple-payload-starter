@@ -1,4 +1,4 @@
-import type { Media } from '@/payload-types'
+import type { Media } from '@/payload-types';
 
 export const image2: Omit<Media, 'createdAt' | 'id' | 'updatedAt'> = {
   alt: 'Curving abstract shapes with an orange and blue gradient',
@@ -64,4 +64,4 @@ export const image2: Omit<Media, 'createdAt' | 'id' | 'updatedAt'> = {
       version: 1,
     },
   },
-}
+};

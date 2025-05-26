@@ -1,16 +1,16 @@
-import type { CheckboxField, TextField } from 'payload'
+import type { CheckboxField, TextField } from 'payload';
 
-import { formatSlugHook } from './formatSlug'
+import { formatSlugHook } from './formatSlug';
 
 type Overrides = {
-  slugOverrides?: Partial<TextField>
-  checkboxOverrides?: Partial<CheckboxField>
-}
+  slugOverrides?: Partial<TextField>;
+  checkboxOverrides?: Partial<CheckboxField>;
+};
 
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField]
+type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField];
 
 export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
-  const { slugOverrides, checkboxOverrides } = overrides
+  const { slugOverrides, checkboxOverrides } = overrides;
 
   const checkBoxField: CheckboxField = {
     name: 'slugLock',
@@ -21,7 +21,7 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
       position: 'sidebar',
     },
     ...checkboxOverrides,
-  }
+  };
 
   // @ts-expect-error Expect ts error here because of typescript mismatching Partial<TextField> with TextField
   const slugField: TextField = {
@@ -47,7 +47,7 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
         },
       },
     },
-  }
+  };
 
-  return [slugField, checkBoxField]
-}
+  return [slugField, checkBoxField];
+};

@@ -1,19 +1,19 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
 
-import { buildConfig } from 'payload'
-import sharp from 'sharp'
+import { buildConfig } from 'payload';
+import sharp from 'sharp';
 
-import { Categories } from '@/payload/collections/Categories'
-import { Media } from '@/payload/collections/Media'
-import { Pages } from '@/payload/collections/Pages'
-import { Posts } from '@/payload/collections/Posts'
-import { Users } from '@/payload/collections/Users'
-import { defaultLexical } from '@/payload/fields/defaultLexical'
-import { Footer } from '@/payload/globals/Footer/config'
-import { Header } from '@/payload/globals/Header/config'
+import { Categories } from '@/payload/collections/Categories';
+import { Media } from '@/payload/collections/Media';
+import { Pages } from '@/payload/collections/Pages';
+import { Posts } from '@/payload/collections/Posts';
+import { Users } from '@/payload/collections/Users';
+import { defaultLexical } from '@/payload/fields/defaultLexical';
+import { Footer } from '@/payload/globals/Footer/config';
+import { Header } from '@/payload/globals/Header/config';
 
-import { getServerSideURL } from '@/lib/utils/getURL'
-import { plugins } from './payload/plugins'
+import { getServerSideURL } from '@/lib/utils/getURL';
+import { plugins } from './payload/plugins';
 
 export default buildConfig({
   admin: {
@@ -58,7 +58,5 @@ export default buildConfig({
   typescript: {
     outputFile: 'src/payload-types.ts',
   },
-  plugins: [
-    ...plugins
-  ],
-})
+  plugins: [...plugins],
+});

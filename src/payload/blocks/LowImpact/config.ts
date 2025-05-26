@@ -1,13 +1,8 @@
-import type { Block, Field } from 'payload'
+import type { Block, Field } from 'payload';
 
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
-import { linkGroup } from '@/payload/fields/Link/linkGroup'
+import { linkGroup } from '@/payload/fields/Link/linkGroup';
 
 export const LowImpactHero: Block = {
   slug: 'LowImpactHero',
@@ -18,12 +13,7 @@ export const LowImpactHero: Block = {
       type: 'richText',
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
-          return [
-            ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-          ]
+          return [...rootFeatures, HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }), FixedToolbarFeature(), InlineToolbarFeature()];
         },
       }),
       label: false,
@@ -34,4 +24,4 @@ export const LowImpactHero: Block = {
       },
     }),
   ],
-}
+};
