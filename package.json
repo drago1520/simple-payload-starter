@@ -17,7 +17,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@payloadcms/db-mongodb": "3.39.1",
+		"@payloadcms/db-postgres": "^3.39.1",
 		"@payloadcms/live-preview-react": "3.39.1",
 		"@payloadcms/next": "3.39.1",
 		"@payloadcms/payload-cloud": "3.39.1",
