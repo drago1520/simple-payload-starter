@@ -51,6 +51,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    idType: 'uuid',
   }),
   collections: [Users, Media, Pages, Posts, Categories],
   cors: [getServerSideURL()].filter(Boolean),
